@@ -16,6 +16,8 @@ public class Medicine {
 
     public String description;
 
+    public String image;
+
     public String price;
 
     public Boolean prescriptionRequired;
