@@ -85,15 +85,12 @@ public class MedicineServiceImpl implements MedicineService {
         Optional<Medicine> medicine = medicineRepository.findById(id);
         if(medicine.isPresent()){
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
-
             for(var med: cart.medicines){
-                if(med.id == id){
+                if(med.id.equals(id)){
                     med.quantity = count;
                 }
             }
-
             cartRepository.save(cart);
-
             return cart;
         }
         throw new Exception("Medicine id incorrect");
