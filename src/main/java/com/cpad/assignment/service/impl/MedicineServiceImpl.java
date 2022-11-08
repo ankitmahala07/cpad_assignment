@@ -49,19 +49,22 @@ public class MedicineServiceImpl implements MedicineService {
     public Cart addMedicine(String id, int Count) throws Exception {
         Optional<Medicine> medicine = medicineRepository.findById(id);
         if(medicine.isPresent()){
+            int oldCount = 0;
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
             boolean medPresent = false;
             for(var med: cart.medicines){
                 if(med.id.equals(id)){
                     medPresent = true;
+                    oldCount = med.quantity;
+                    cart.medicines.remove(med);
                     break;
                 }
             }
-            if(!medPresent){
-                medicine.get().quantity = Count;
-                cart.medicines.add(medicine.get());
-                cartRepository.save(cart);
-            }
+
+            medicine.get().quantity = oldCount + Count;
+            cart.medicines.add(medicine.get());
+            cartRepository.save(cart);
+            
             return cart;
         }
         throw new Exception("Medicine id incorrect");
