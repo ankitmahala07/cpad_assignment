@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 @Data
 public class UserInfoDTO {
 
+    private String userId;
+
     private String username;
 
     private String displayName;

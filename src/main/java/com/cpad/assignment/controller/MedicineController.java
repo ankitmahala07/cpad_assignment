@@ -24,34 +24,34 @@ public class MedicineController {
 
     //search medicine using filterDTO
     @GetMapping("/{query}")
-    public ResponseEntity<List<Medicine>> searchMedicine(@RequestParam("query") String query){
+    public ResponseEntity<List<Medicine>> searchMedicine(@PathVariable("query") String query){
         return ResponseEntity.ok(medicineService.searchMedicine(query));
     }
 
     //get medicine details
     @GetMapping("/id/{id}")
-    public ResponseEntity<Medicine> getMedicine(@RequestParam("id") String id) throws Exception {
+    public ResponseEntity<Medicine> getMedicine(@PathVariable("id") String id) throws Exception {
         return ResponseEntity.ok(medicineService.getMedicine(id));
     }
 
     //add medicine to cart
     @GetMapping("/add/{id}/{count}")
-    public ResponseEntity<Cart> addMedicine(@RequestParam("id") String id,
-                                            @RequestParam("count") int count) throws Exception {
+    public ResponseEntity<Cart> addMedicine(@PathVariable("id") String id,
+                                            @PathVariable("count") int count) throws Exception {
 
         return ResponseEntity.ok(medicineService.addMedicine(id, count));
     }
 
     //remove medicine from cart
     @GetMapping("/remove/{id}")
-    public ResponseEntity<Cart> removeMedicine(@RequestParam("id") String id) throws Exception {
+    public ResponseEntity<Cart> removeMedicine(@PathVariable("id") String id) throws Exception {
         return ResponseEntity.ok(medicineService.removeMedicine(id));
     }
 
     //increase medicine count in cart
     @GetMapping("/update/{count}/{medicineId}")
-    public ResponseEntity<Cart> updateMedicineQuantity(@RequestParam("count") int count,
-                                                       @RequestParam("medicineId") String medicineId) throws Exception {
+    public ResponseEntity<Cart> updateMedicineQuantity(@PathVariable("count") int count,
+                                                       @PathVariable("medicineId") String medicineId) throws Exception {
         return ResponseEntity.ok(medicineService.updateMedicineQuantity(count, medicineId));
     }
 }

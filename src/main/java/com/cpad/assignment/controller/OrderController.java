@@ -32,10 +32,10 @@ public class OrderController {
     }
 
     //get transactions
-    @GetMapping("/transactions/{page}/{size}")
+    @GetMapping("/transactions/list/{page}/{size}")
     public ResponseEntity<List<Transaction>> getTransactions(
-            @RequestParam int page,
-            @RequestParam int size
+            @PathVariable("page") int page,
+            @PathVariable("size") int size
     ) throws Exception{
         return ResponseEntity.ok(orderService.getTransactions(page, size));
     }
@@ -43,7 +43,7 @@ public class OrderController {
     //reorder a transaction
     @GetMapping("/transactions/refill/{transactionId}")
     public ResponseEntity<List<Transaction>>
-    reorderTransaction(@RequestParam String transactionId) throws Exception{
+    reorderTransaction(@PathVariable String transactionId) throws Exception{
         return ResponseEntity.ok(orderService.reorderTransaction(transactionId));
     }
 

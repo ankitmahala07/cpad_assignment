@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface TransactionRepository extends ArangoRepository<Transaction,String> {
 
     @Query("FOR doc IN #collection \n"+
+            "FILTER doc.userId==@userId \n" +
             "LIMIT @offset, @size \n"+
             "return doc"
     )

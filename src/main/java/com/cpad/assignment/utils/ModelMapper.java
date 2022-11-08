@@ -9,10 +9,10 @@ public class ModelMapper {
 
     public UserInfoDTO convert(User user){
         UserInfoDTO userDto = new UserInfoDTO();
+        userDto.setUserId(user.id);
         userDto.setUsername(user.username);
         userDto.setDisplayName(user.displayName);
         userDto.setRole(user.role);
         return userDto;
     }
-
 }
