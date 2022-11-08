@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface MedicineRepository extends ArangoRepository<Medicine,String> {
 
-    @Query("FOR doc IN #COLLECTION \n"+
-    "FILTER doc.name like '%@query%' \n"+
+    @Query("FOR doc IN medicines \n"+
+    "FILTER doc.name like %@query% \n"+
     "RETURN doc")
     List<Medicine> searchMedicines(String query);
 
