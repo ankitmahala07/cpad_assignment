@@ -11,6 +11,7 @@ public interface TransactionRepository extends ArangoRepository<Transaction,Stri
 
     @Query("FOR doc IN #collection \n"+
             "FILTER doc.userId==@userId \n" +
+            "SORT doc.createdAt DESC \n"+
             "LIMIT @offset, @size \n"+
             "return doc"
     )
