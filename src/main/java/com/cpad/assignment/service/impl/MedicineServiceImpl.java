@@ -52,7 +52,7 @@ public class MedicineServiceImpl implements MedicineService {
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
             boolean medPresent = false;
             for(var med: cart.medicines){
-                if(med.id == id){
+                if(med.id.equals(id)){
                     medPresent = true;
                     break;
                 }

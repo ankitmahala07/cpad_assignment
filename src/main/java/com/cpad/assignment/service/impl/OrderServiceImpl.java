@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
 
     public Cart getCart() throws Exception{
         Optional<Cart> cart = cartRepository.findByUserId(getUserId());
-        if(cart.isPresent()) {
+        if(!cart.isPresent()) {
             Cart crt = new Cart();
             crt.userId = getUserId();
             cart = Optional.of(cartRepository.save(crt));
