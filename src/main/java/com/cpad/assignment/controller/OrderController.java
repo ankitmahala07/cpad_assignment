@@ -30,10 +30,8 @@ public class OrderController {
 
     //place order on cart
     @PostMapping("/order")
-    public void placeOrder(
-            @RequestBody Cart items
-    ) throws Exception {
-        orderService.placeOrder(items);
+    public void placeOrder() throws Exception {
+        orderService.placeOrder();
     }
 
     //get transactions

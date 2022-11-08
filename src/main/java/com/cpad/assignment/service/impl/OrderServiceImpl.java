@@ -47,35 +47,27 @@ public class OrderServiceImpl implements OrderService {
         return totalPrice;
     }
 
-    public void placeOrder(Cart items) throws Exception{
+    public void placeOrder() throws Exception{
         Optional<Cart> cart = cartRepository.findByUserId(getUserId());
         if(!cart.isPresent()) {
             throw new Exception("No cart found");
         }
-        if(cart.get().medicines.isEmpty() || items.medicines.isEmpty()){
+        if(cart.get().medicines.isEmpty()){
             return;
         }
 
-        List<Medicine> remaining = new ArrayList<>();
-
-        cart.get().medicines.forEach(med -> {
-                if(!items.medicines.contains(med)){
-                    remaining.add(med);
-                }
-        });
-
-        cart.get().medicines = remaining;
-        cartRepository.save(cart.get());
-
         Transaction trans = new Transaction();
         trans.userId = getUserId();
-        trans.medicines = items.medicines;
+        trans.medicines = cart.get().medicines;
 
-        items.medicines.forEach(it -> {
+        cart.get().medicines.forEach(it -> {
             trans.amount += (Float.parseFloat(it.price) * it.quantity);
         });
 
         transactionRepository.save(trans);
+
+        cart.get().medicines = new ArrayList<>();
+        cartRepository.save(cart.get());
     }
 
     public List<Transaction> getTransactions(int page, int size) throws Exception{

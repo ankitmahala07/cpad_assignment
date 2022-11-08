@@ -11,7 +11,7 @@ public interface OrderService {
 
     public double getCartPrice() throws Exception;
 
-    public void placeOrder(Cart items) throws Exception;
+    public void placeOrder() throws Exception;
 
     public List<Transaction> getTransactions(int page, int size) throws Exception;
 
