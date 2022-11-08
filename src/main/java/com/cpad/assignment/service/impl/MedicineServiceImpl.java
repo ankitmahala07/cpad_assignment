@@ -74,7 +74,13 @@ public class MedicineServiceImpl implements MedicineService {
         Optional<Medicine> medicine = medicineRepository.findById(id);
         if(medicine.isPresent()){
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
-            cart.medicines.remove(medicine.get());
+            Medicine toBeRemoved = null;
+            for(var med : cart.medicines){
+                if(med.id.equals(medicine.get().id)){
+                    toBeRemoved = med;
+                }
+            }
+            cart.medicines.remove(toBeRemoved);
             return cartRepository.save(cart);
         }
         throw new Exception("Medicine id incorrect");
