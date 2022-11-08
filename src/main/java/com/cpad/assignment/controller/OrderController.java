@@ -24,7 +24,7 @@ public class OrderController {
     }
 
     @GetMapping("/cart/totalprice")
-    public ResponseEntity<double> getCartPrice() throws Exception {
+    public ResponseEntity<Double> getCartPrice() throws Exception {
         return ResponseEntity.ok(orderService.getCartPrice());
     }
 
