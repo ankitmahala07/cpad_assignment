@@ -38,6 +38,15 @@ public class OrderServiceImpl implements OrderService {
         return cart.get();
     }
 
+    public double getCartPrice() throws Exception {
+        Cart cart = cartRepository.findByUserId(getUserId()).get();
+        double totalPrice = 0;
+        for(var med : cart.medicines){
+            totalPrice += (med.quantity * Float.parseFloat(med.price));
+        }
+        return totalPrice;
+    }
+
     public void placeOrder(Cart items) throws Exception{
         Optional<Cart> cart = cartRepository.findByUserId(getUserId());
         if(!cart.isPresent()) {

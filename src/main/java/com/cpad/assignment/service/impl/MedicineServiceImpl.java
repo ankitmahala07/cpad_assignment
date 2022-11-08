@@ -75,8 +75,7 @@ public class MedicineServiceImpl implements MedicineService {
         if(medicine.isPresent()){
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
             cart.medicines.remove(medicine.get());
-            cartRepository.save(cart);
-            return cart;
+            return cartRepository.save(cart);
         }
         throw new Exception("Medicine id incorrect");
     }

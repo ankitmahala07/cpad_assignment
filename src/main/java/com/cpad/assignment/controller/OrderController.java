@@ -23,6 +23,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getCart());
     }
 
+    @GetMapping("/cart/totalprice")
+    public ResponseEntity<double> getCartPrice() throws Exception {
+        return ResponseEntity.ok(orderService.getCartPrice());
+    }
+
     //place order on cart
     @PostMapping("/order")
     public void placeOrder(
