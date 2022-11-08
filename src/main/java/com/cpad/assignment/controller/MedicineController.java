@@ -43,7 +43,7 @@ public class MedicineController {
     }
 
     //remove medicine from cart
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public ResponseEntity<Cart> removeMedicine(@PathVariable("id") String id) throws Exception {
         return ResponseEntity.ok(medicineService.removeMedicine(id));
     }

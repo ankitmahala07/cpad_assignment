@@ -87,7 +87,7 @@ public class MedicineServiceImpl implements MedicineService {
             Cart cart = cartRepository.findByUserId(orderService.getUserId()).get();
             for(var med: cart.medicines){
                 if(med.id.equals(id)){
-                    med.quantity = count;
+                    med.quantity = Math.max(count, 0);
                 }
             }
             cartRepository.save(cart);
