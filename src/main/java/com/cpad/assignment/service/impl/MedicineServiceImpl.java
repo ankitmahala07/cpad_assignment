@@ -64,7 +64,7 @@ public class MedicineServiceImpl implements MedicineService {
             medicine.get().quantity = oldCount + Count;
             cart.medicines.add(medicine.get());
             cartRepository.save(cart);
-            
+
             return cart;
         }
         throw new Exception("Medicine id incorrect");

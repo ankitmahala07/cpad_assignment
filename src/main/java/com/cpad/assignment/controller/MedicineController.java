@@ -49,9 +49,9 @@ public class MedicineController {
     }
 
     //increase medicine count in cart
-    @GetMapping("/update/{count}/{medicineId}")
+    @GetMapping("/update/{id}/{count}")
     public ResponseEntity<Cart> updateMedicineQuantity(@PathVariable("count") int count,
-                                                       @PathVariable("medicineId") String medicineId) throws Exception {
+                                                       @PathVariable("id") String medicineId) throws Exception {
         return ResponseEntity.ok(medicineService.updateMedicineQuantity(count, medicineId));
     }
 }
